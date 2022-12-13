@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# see scenarios: https://hiroi10.hatenablog.com/entry/2019/12/18/000009
+# see scenario details: https://hiroi10.hatenablog.com/entry/2019/12/18/000009
 
 # sysbench
 # * table_size: not effect qps

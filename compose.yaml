@@ -1,8 +1,9 @@
 name: db-benchmark
 
 services:
+  # https://dev.mysql.com/doc/refman/8.0/en/server-options.html
   mysql:
-    image: mysql:8.0
+    image: mysql:8.0.31
     command: --max-allowed-packet=96M --character-set-server=utf8mb4 --log-bin-trust-function-creators=1 --local-infile=1 --max-connections=1000 --innodb-buffer-pool-size=2415919104 --innodb-flush-log-at-trx-commit=0 --innodb-flush-method=O_DIRECT_NO_FSYNC --innodb-doublewrite=OFF
     cpus: 4
     ports:
@@ -10,6 +11,22 @@ services:
     environment:
       MYSQL_DATABASE: sb_test
       MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - type: tmpfs
+        target: /var/lib/mysql
+      - type: tmpfs
+        target: /tmp
+
+  # https://mariadb.com/kb/en/mysqld-options/
+  mariadb:
+    image: mariadb:10.10
+    command: --max-allowed-packet=96M --character-set-server=utf8mb4 --log-bin-trust-function-creators=1 --local-infile=1 --max-connections=1000 --innodb-buffer-pool-size=2415919104 --innodb-flush-log-at-trx-commit=0 --innodb-flush-method=O_DIRECT --innodb-doublewrite=OFF
+    cpus: 4
+    ports:
+      - "3316:3306"
+    environment:
+      MARIADB_DATABASE: sb_test
+      MARIADB_ROOT_PASSWORD: password
     volumes:
       - type: tmpfs
         target: /var/lib/mysql
