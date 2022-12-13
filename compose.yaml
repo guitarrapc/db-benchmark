@@ -16,18 +16,18 @@ services:
       - type: tmpfs
         target: /tmp
 
-  # postgres:
-  #   image: postgres:13.3
-  #   cpus: 4
-  #   ports:
-  #     - 5432:5432
-  #   environment:
-  #     POSTGRES_USER: root
-  #     POSTGRES_PASSWORD: password
-  #     POSTGRES_DB: benchmark
-  #   volumes:
-  #     - type: tmpfs
-  #       target: /var/lib/postgresql/data
+  postgres:
+    image: postgres:13.3
+    cpus: 4
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: benchmark
+    volumes:
+      - type: tmpfs
+        target: /var/lib/postgresql/data
 
   sysbench:
     image: ubuntu:latest
