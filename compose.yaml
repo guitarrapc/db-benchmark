@@ -41,7 +41,7 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: benchmark
+      POSTGRES_DB: sb_test
     volumes:
       - type: tmpfs
         target: /var/lib/postgresql/data

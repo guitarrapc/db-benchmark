@@ -86,22 +86,52 @@ MariaDB parameters. `*` is tuned parameter.
 
 ```
 # General parameters
-table_open_cache = 4000
-thread_cache = 18
+table_open_cache = 2000
+thread_cache = 256
 
 # InnoDB parameters
-innodb_buffer_pool_size = 3221225472 (3G) * (Default: 128M)
-innodb_log_file_size = 50331648 (48M)
+innodb_buffer_pool_size = 2415919104 (2G) * (Default: 128M)
+innodb_log_file_size = 100663296 (96M)
 innodb_log_buffer_size = 16777216 (16M)
 innodb_flush_log_at_trx_commit = 0 * (Default: 1)
 innodb_lock_wait_timeout = 50
 innodb_doublewrite = OFF * (Default: ON)
-innodb_flush_method = O_DIRECT_NO_FSYNC * (Default: fsync)
-innodb_thread_concurrency = 0
+innodb_flush_method = O_DIRECT
 innodb_max_dirty_pages_pct = 90
 ```
 
-
 # PostgreSQL
 
+Version | Kind | Transaction qps |  PostgreSQL CPU | sysbench CPU | sysbench Threads |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 13.3 | Select Simple | 47971qps | 4 | 4 | 8 |
+| 13.3 | Select Range | 32847qps | 4 | 4 | 8 |
+| 13.3 | Select Distinct Range | 20369qps | 4 | 4 | 8 |
+| 13.3 | Select Order Range | 22109qps | 4 | 4 | 8 |
+| 13.3 | Update Index | 24311qps | 4 | 4 | 8 |
+| 13.3 | Update Non-Index | 24463qps | 4 | 4 | 8 |
+| 13.3 | Delete Insert | 3418qps | 4 | 4 | 8 |
+| 13.3 | ReadWrite | 3156qps | 4 | 4 | 8 |
+
+PostgreSQL parameters. `*` is tuned parameter.
+
+> TODO: I should use PGTune to tune PostgreSQL. https://pgtune.leopard.in.ua/#/
+
+```
+# General parameters
+max_connections = 100
+shared_buffers = 128MB
+work_mem = 4MB
+maintenance_work_mem = 64MB
+wal_buffers = 4MB
+max_wal_size = 1GB
+checkpoint_timeout = 5min
+autovacuum_work_mem = -1
+autovacuum_vacuum_threshold = 50
+autovacuum_vacuum_scale_factor = 0.2
+deadlock_timeout = 1s
+```
+
 # SQL Server
+
+As of EULA not allow disclose benchmark result, please run by yourself.
