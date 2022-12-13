@@ -3,8 +3,8 @@ name: db-benchmark
 services:
   mysql:
     image: mysql:8.0
-    command: --max-allowed-packet=96M --character-set-server=utf8mb4 --log-bin-trust-function-creators=1 --local-infile=1 --max-connections=1000
-    cpu_count: 4
+    command: --max-allowed-packet=96M --character-set-server=utf8mb4 --log-bin-trust-function-creators=1 --local-infile=1 --max-connections=1000 --innodb-buffer-pool-size=2415919104 --innodb-flush-log-at-trx-commit=0
+    cpus: 4
     ports:
       - "3306:3306"
     environment:
@@ -18,7 +18,7 @@ services:
 
   # postgres:
   #   image: postgres:13.3
-  #   cpu_count: 4
+  #   cpus: 4
   #   ports:
   #     - 5432:5432
   #   environment:
@@ -33,4 +33,4 @@ services:
     image: ubuntu:latest
     entrypoint: "/bin/bash"
     command: -c 'apt update; apt install -y sysbench; echo ready; sleep 86400s'
-    cpu_count: 4
+    cpus: 4
