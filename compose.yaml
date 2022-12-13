@@ -32,6 +32,5 @@ services:
   sysbench:
     image: ubuntu:latest
     entrypoint: "/bin/bash"
-    #command: -c 'apt update; apt install -y sysbench; time sysbench --threads=2 --events=4 --cpu-max-prime=100500 --verbosity=0 cpu run'
-    command: -c 'apt update; apt install -y sysbench; sleep 86400s'
+    command: -c 'apt update; apt install -y sysbench; echo ready; sleep 86400s'
     cpu_count: 4
