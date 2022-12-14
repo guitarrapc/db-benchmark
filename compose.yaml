@@ -46,8 +46,25 @@ services:
       - type: tmpfs
         target: /var/lib/postgresql/data
 
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    cpus: 4
+    ports:
+      - 1433:1433
+    environment:
+      MSSQL_SA_PASSWORD: Password_
+      ACCEPT_EULA: "Y"
+
   sysbench:
     image: ubuntu:latest
     entrypoint: "/bin/bash"
     command: -c 'apt update; apt install -y sysbench; echo ready; sleep 86400s'
     cpus: 4
+
+  hammerdb:
+    image: tpcorg/hammerdb:v4.6
+    entrypoint: "/bin/bash"
+    command: -c 'apt update; apt install -y msodbcsql18; ln -sf /etc/odbcinst.ini /usr/local/unixODBC/etc/odbcinst.ini; echo ready; sleep 86400s'
+    cpus: 4
+    environment:
+      ACCEPT_EULA: "Y"
