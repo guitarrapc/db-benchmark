@@ -2,6 +2,24 @@
 
 Database benchmark, running database on Docker.
 
+# Getting started
+
+```bash
+# launch docker compose
+$ docker-compose up -d
+
+# mysql/postgresql/mariadb
+$ docker compose exec sysbench /bin/bash
+# run your sysbench script. e.g. Copy bench script line from sysbench/sysbench_mariadb.sh.
+
+# sqlserver
+$ docker compose exec hammerdb /bin/bash
+# ./hammerdbcli
+# ./hammerdbcli py auto mssql_schema.py
+# Ctrl+C
+# ./hammerdbcli py auto mssql_run.py
+```
+
 # MySQL
 
 sysbench result.
