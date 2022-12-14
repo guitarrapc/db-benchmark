@@ -1,11 +1,15 @@
-#!/usr/local/bin/tclsh8.6
+#!/usr/bin/tclsh
+
+# reference: https://www.hammerdb.com/docs/ch09s09.html
+
+# ./hammerdbclit auto mssql_schema.tcl
 
 # isql -v -k "DRIVER={ODBC Driver 17 for SQL Server};TrustServerCertificate=yes;Server=sqlserver;UID=sa;PWD=Password_"
 # isql -v -k "DRIVER={ODBC Driver 18 for SQL Server};TrustServerCertificate=yes;Server=sqlserver;UID=sa;PWD=Password_"
 
 # ./hammerdbcli < mssql.tcl
 
-puts "CONFIGURE TEST SEQUENCE"
+puts "SETTING CONFIGURATION"
 dbset db mssqls
 dbset bm TPC-C
 diset connection mssqls_tcp false
@@ -23,19 +27,9 @@ vuset logtotemp 1
 vuset unique 1
 vuset timestamps 1
 print dict
-
-buildschema
-vudestroy
-
 loadscript
 
-vuset vu 1
-print vuconf
-
-vucreate
-vustatus
-
-puts "TEST SEQUENCE START"
-vurun
-puts "TEST SEQUENCE COMPLETE"
+puts "SCHEMA START"
+buildschema
+puts "SCHEMA SEQUENCE COMPLETE"
 exit
