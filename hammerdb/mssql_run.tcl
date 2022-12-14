@@ -20,8 +20,8 @@ diset tpcc mssqls_driver timed
 diset tpcc mssqls_dbase tpcc_a
 diset tpcc mssqls_rampup 0
 diset tpcc mssqls_duration 1
-diset connection mssqls_odbc_driver "ODBC Driver 18 for SQL Server"
-diset connection mssqls_linux_odbc "ODBC Driver 18 for SQL Server"
+diset connection mssqls_odbc_driver "ODBC Driver 17 for SQL Server"
+diset connection mssqls_linux_odbc "ODBC Driver 17 for SQL Server"
 
 vuset logtotemp 1
 vuset unique 1

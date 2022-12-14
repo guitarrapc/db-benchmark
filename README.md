@@ -152,3 +152,5 @@ deadlock_timeout = 1s
 # SQL Server
 
 As of EULA not allow disclose benchmark result, please run by yourself.
+
+HammerDB `buildschema` takes a long long time to complete. You may need wait more than 10 minutes, please be patient.
