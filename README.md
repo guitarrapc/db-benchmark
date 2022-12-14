@@ -14,7 +14,6 @@ $ docker compose exec sysbench /bin/bash
 
 # sqlserver
 $ docker compose exec hammerdb /bin/bash
-# ./hammerdbcli
 # ./hammerdbcli py auto mssql_schema.py
 # Ctrl+C
 # ./hammerdbcli py auto mssql_run.py
